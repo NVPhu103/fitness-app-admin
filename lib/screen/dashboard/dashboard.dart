@@ -1,3 +1,5 @@
+import 'package:fitness_app_admin/screen/food/add_page.dart';
+import 'package:fitness_app_admin/screen/food/fitnesspal_list.dart';
 import 'package:fitness_app_admin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,7 +28,6 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return const Scaffold();
+    return const FitnessPallistPage();
   }
 }
-
