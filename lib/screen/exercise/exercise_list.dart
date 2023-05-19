@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'add_page.dart';
+import 'add_exercise.dart';
 import 'package:http/http.dart' as http;
 
-class FitnessPallistPage extends StatefulWidget {
-  const FitnessPallistPage({super.key});
+class ExerciselistPage extends StatefulWidget {
+  const ExerciselistPage({super.key});
 
   @override
-  State<FitnessPallistPage> createState() => _FitnessPallistPageState();
+  State<ExerciselistPage> createState() => _ExerciselistPageState();
 }
 
-class _FitnessPallistPageState extends State<FitnessPallistPage> {
+class _ExerciselistPageState extends State<ExerciselistPage> {
   bool isLoading = true;
   List items = [];
 
@@ -18,20 +18,20 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
   @override
   void initState() {
     super.initState();
-    fetchFitnessPal();
+    fetchExercise();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FitnessPal List'),
+        title: const Text('Exersice List'),
       ),
       body: Visibility(
         visible: isLoading,
         child: Center(child: CircularProgressIndicator()),
         replacement: RefreshIndicator(
-          onRefresh: fetchFitnessPal,
+          onRefresh: fetchExercise,
           child: ListView.builder(
             itemCount: items.length,
             itemBuilder: (context, index) {
@@ -41,17 +41,16 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
               return ListTile(
                 leading: CircleAvatar(child: Text('${index + 1}')),
                 title: Text(item['name']),
-                subtitle: Text(item['calories'].toString() +
-                    " calories per " +
-                    item['unit'].toString()),
+                subtitle: Text(item['description'] + " burned_calories "),
                 trailing: PopupMenuButton(
                   onSelected: (value) {
                     if (value == 'edit') {
+                      print(item);
                       // open edit page
                       navigateToEditPage(item);
-                    } else if (value == 'delete') {
-                      // delete and remove the items
-                      deleteById(id);
+                      // } else if (value == 'delete') {
+                      //   // delete and remove the items
+                      //   deleteById(id);
                     }
                   },
                   itemBuilder: (context) {
@@ -60,10 +59,10 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
                         child: Text('Edit'),
                         value: 'edit',
                       ),
-                      PopupMenuItem(
-                        child: Text('Delete'),
-                        value: 'delete',
-                      ),
+                      // PopupMenuItem(
+                      //   child: Text('Delete'),
+                      //   value: 'delete',
+                      // ),
                     ];
                   },
                 ),
@@ -74,50 +73,53 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: navigateToaddPage,
-        label: const Text('Add Fitness'),
+        label: const Text('Add Exercise'),
       ),
     );
   }
 
   Future<void> navigateToEditPage(Map item) async {
+    // print(1);
+    // print(item);
     final route = MaterialPageRoute(
-      builder: (context) => AddFitnessPalPage(fitnesspal: item),
+      builder: (context) => AddExercisePage(exercise: item),
     );
     Navigator.push(context, route);
   }
 
   Future<void> navigateToaddPage() async {
     final route = MaterialPageRoute(
-      builder: (context) => AddFitnessPalPage(),
+      builder: (context) => AddExercisePage(),
     );
     await Navigator.push(context, route);
     setState(() {
       isLoading = true;
     });
-    fetchFitnessPal();
+    fetchExercise();
   }
 
-  Future<void> deleteById(String id) async {
-    //delete the item
-    print(id);
-    final url = 'http://127.0.0.1:8000/foods/delete/$id';
-    final uri = Uri.parse(url);
-    final response = await http.patch(uri);
-    if (response.statusCode == 204) {
-      // remove item from list
-      final filtered = items.where((element) => element['id'] != id).toList();
-      setState(() {
-        items = filtered;
-      });
-    } else {
-      showErrorMessage('Deletion Failed');
-    }
-  }
+  // Future<void> deleteById(String id) async {
+  //   //delete the item
+  //   // print(id);
+  //   final url = 'http://127.0.0.1:8000/foods/delete/$id';
+  //   final uri = Uri.parse(url);
+  //   final response = await http.patch(uri);
+  //   if (response.statusCode == 204) {
+  //     // remove item from list
+  //     final filtered = items.where((element) => element['id'] != id).toList();
+  //     setState(() {
+  //       items = filtered;
+  //     });
+  //   } else {
+  //     showErrorMessage('Deletion Failed');
+  //   }
+  // }
 
-  Future<void> fetchFitnessPal() async {
-    final url = 'http://127.0.0.1:8000/foods?status=ACTIVE&page=1&per_page=100';
+  Future<void> fetchExercise() async {
+    final url = 'http://127.0.0.1:8000/exercises?page=1&per_page=100';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
+
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       final result = json[0];

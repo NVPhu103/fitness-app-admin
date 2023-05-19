@@ -49,7 +49,8 @@ class _AddFitnessPalPageState extends State<AddFitnessPalPage> {
           SizedBox(height: 20),
           TextField(
             controller: unitController,
-            decoration: InputDecoration(hintText: 'unit'),
+            decoration: InputDecoration(
+                hintText: "unit of the food (e.g. a bowl, 100 gram, a cup)"),
           ),
           SizedBox(height: 20),
           TextField(

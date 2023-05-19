@@ -22,7 +22,7 @@ class LoginForm extends StatelessWidget {
         body: jsonEncode({'email': email, 'password': password}),
         headers: {'Content-Type': 'application/json'},
       );
-      if (response.statusCode == 201 || response.statusCode == 200) {
+      if (response.statusCode == 202 || response.statusCode == 200) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Dashboard()));
       } else {
