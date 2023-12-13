@@ -90,7 +90,7 @@ class _AddFitnessPalPageState extends State<AddFitnessPalPage> {
       "unit": unit,
       "status": status,
     };
-    final url = 'http://127.0.0.1:8000/foods/$id';
+    final url = 'https://fitness-app-e0xl.onrender.com/foods/$id';
     final uri = Uri.parse(url);
     final response = await http.patch(
       uri,
@@ -117,7 +117,7 @@ class _AddFitnessPalPageState extends State<AddFitnessPalPage> {
       "unit": unit,
       // "status": false,
     };
-    final url = 'http://127.0.0.1:8000/foods';
+    final url = 'https://fitness-app-e0xl.onrender.com/foods';
     final uri = Uri.parse(url);
     final response = await http.post(
       uri,

@@ -101,7 +101,7 @@ class _ExerciselistPageState extends State<ExerciselistPage> {
   // Future<void> deleteById(String id) async {
   //   //delete the item
   //   // print(id);
-  //   final url = 'http://127.0.0.1:8000/foods/delete/$id';
+  //   final url = 'https://fitness-app-e0xl.onrender.com/foods/delete/$id';
   //   final uri = Uri.parse(url);
   //   final response = await http.patch(uri);
   //   if (response.statusCode == 204) {
@@ -116,14 +116,13 @@ class _ExerciselistPageState extends State<ExerciselistPage> {
   // }
 
   Future<void> fetchExercise() async {
-    final url = 'http://127.0.0.1:8000/exercises?page=1&per_page=100';
+    final url = 'https://fitness-app-e0xl.onrender.com/exercises?page=1&per_page=100';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
-      final result = json[0];
-      print(json.runtimeType);
+
       setState(() {
         items = json;
       });

@@ -74,7 +74,7 @@ class _AddExercisePageState extends State<AddExercisePage> {
             controller: burning_typeController,
             decoration: InputDecoration(
                 hintText:
-                    "Burning_type: you choose 'CALORIES_PER_HOU' or 'CALORIES_PER_SET '"),
+                    "Burning_type: you choose 'CALORIES_PER_HOUR' or 'CALORIES_PER_SET '"),
           ),
           SizedBox(height: 20),
           TextField(
@@ -109,7 +109,7 @@ class _AddExercisePageState extends State<AddExercisePage> {
       "description": description,
       "burned_calories": burnedcalories
     };
-    final url = 'http://127.0.0.1:8000/exercises/$id';
+    final url = 'https://fitness-app-e0xl.onrender.com/exercises/$id';
     final uri = Uri.parse(url);
     final response = await http.patch(
       uri,
@@ -139,7 +139,7 @@ class _AddExercisePageState extends State<AddExercisePage> {
       "burned_calories": burnedcalories,
       "description": description,
     };
-    final url = 'http://127.0.0.1:8000/exercises';
+    final url = 'https://fitness-app-e0xl.onrender.com/exercises';
     final uri = Uri.parse(url);
     final response = await http.post(
       uri,
