@@ -33,6 +33,12 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
         replacement: RefreshIndicator(
           onRefresh: fetchFitnessPal,
           child: ListView.builder(
+            padding: const EdgeInsets.only(
+              right: 16,
+              left: 16,
+              top: 16,
+              bottom: 72,
+            ),
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index] as Map;
@@ -115,7 +121,8 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
   }
 
   Future<void> fetchFitnessPal() async {
-    final url = 'https://fitness-app-e0xl.onrender.com/foods?status=ACTIVE&page=1&per_page=100';
+    final url =
+        'https://fitness-app-e0xl.onrender.com/foods?status=ACTIVE&page=1&per_page=100';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
