@@ -33,11 +33,10 @@ class NutritionsRepository {
     required UpdateNutritionRequest request,
   }) async {
     try {
-      final response = await _service.patchNutritionById(
+      await _service.patchNutritionById(
         id: id,
         request: request,
       );
-      print(response);
     } catch (error, statckTrace) {
       if (kDebugMode) {
         print("$error + $statckTrace");

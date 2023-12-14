@@ -20,6 +20,7 @@ class NutritionsService extends BaseService {
   }) async {
     final response = await patch(
       NutritionsApi.nutritionById.replaceAll(RegExp('{id}'), id),
+      data: request.toJson(),
     );
     return response;
   }
