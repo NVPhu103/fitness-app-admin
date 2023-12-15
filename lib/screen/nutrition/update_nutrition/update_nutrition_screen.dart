@@ -25,12 +25,21 @@ class UpdateNutritionScreen extends StatefulWidget {
 
 class _UpdateNutritionScreenState extends State<UpdateNutritionScreen> {
   late UpdateNutritionBloc bloc;
+  final ScrollController _controller = ScrollController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     bloc = UpdateNutritionBloc()..getData(widget.id);
+  }
+
+  void _scrollTop() {
+    _controller.animateTo(
+      _controller.position.minScrollExtent,
+      duration: const Duration(seconds: 2),
+      curve: Curves.fastOutSlowIn,
+    );
   }
 
   @override
@@ -44,6 +53,7 @@ class _UpdateNutritionScreenState extends State<UpdateNutritionScreen> {
                 previous.isUpdateSuccess != current.isUpdateSuccess &&
                 current.isUpdateSuccess == true,
             listener: (context, state) {
+              _scrollTop();
               FocusManager.instance.primaryFocus?.unfocus();
               const snackBar = SnackBar(content: Text('Update Success'));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -80,6 +90,7 @@ class _UpdateNutritionScreenState extends State<UpdateNutritionScreen> {
                         vertical: 16,
                       ),
                       child: SingleChildScrollView(
+                        controller: _controller,
                         child: Form(
                           key: _formKey,
                           child: Column(
