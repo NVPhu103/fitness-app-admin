@@ -1,6 +1,7 @@
 import 'package:fitness_app_admin/screen/dashboard/dashboard_screens.dart';
 import 'package:fitness_app_admin/screen/food/add_page.dart';
 import 'package:fitness_app_admin/screen/food/fitnesspal_list.dart';
+import 'package:fitness_app_admin/screen/nutrition/select_food_screen.dart';
 import 'package:fitness_app_admin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -75,6 +76,20 @@ class SideMenu extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) {
                       return const FitnessPallistPage();
+                    },
+                  ),
+                );
+              },
+            ),
+            DrawerListTile(
+              title: "Nutrition",
+              svgSrc: "assets/icons/Hamburger.svg",
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const SelectFoodScreen();
                     },
                   ),
                 );

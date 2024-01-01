@@ -116,7 +116,8 @@ class _ExerciselistPageState extends State<ExerciselistPage> {
   // }
 
   Future<void> fetchExercise() async {
-    final url = 'https://fitness-app-e0xl.onrender.com/exercises?page=1&per_page=100';
+    final url =
+        'https://fitness-app-e0xl.onrender.com/exercises?page=1&per_page=100';
     final uri = Uri.parse(url);
     final response = await http.get(uri);
 
