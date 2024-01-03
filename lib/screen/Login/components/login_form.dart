@@ -26,7 +26,7 @@ class LoginForm extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Dashboard()));
       } else {
-        var body = jsonDecode(response.body);
+        var body = jsonDecode(utf8.decode(response.bodyBytes));
         if (response.statusCode == 422) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(

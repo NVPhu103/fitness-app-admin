@@ -122,7 +122,7 @@ class _ExerciselistPageState extends State<ExerciselistPage> {
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
 
       setState(() {
         items = json;

@@ -126,7 +126,7 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
       final result = json[0];
       print(json.runtimeType);
       setState(() {
