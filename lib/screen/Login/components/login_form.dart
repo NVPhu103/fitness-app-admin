@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fitness_app_admin/screen/dashboard/dashboard.dart';
+import 'package:fitness_app_admin/utilities/context.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
@@ -93,6 +94,7 @@ class LoginForm extends StatelessWidget {
                   passwordController.text.toString(), context),
               child: Text(
                 "Login".toUpperCase(),
+                style: TextStyle(color: context.appColor.colorWhite),
               ),
             ),
           ),

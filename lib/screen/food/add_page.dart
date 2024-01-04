@@ -37,7 +37,7 @@ class _AddFitnessPalPageState extends State<AddFitnessPalPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(isEdit ? 'Edit fitnesspal' : 'Add FitnessPal'),
+        title: Text(isEdit ? 'Edit Food' : 'Add Food'),
       ),
       body: ListView(
         padding: EdgeInsets.all(20),

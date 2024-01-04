@@ -80,7 +80,7 @@ class _FitnessPallistPageState extends State<FitnessPallistPage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: navigateToaddPage,
-        label: const Text('Add Fitness'),
+        label: const Text('Add Food'),
       ),
     );
   }
